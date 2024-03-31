@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Image from 'next/image'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,8 +21,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Person2Icon from '@mui/icons-material/Person2';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-
+import Logo from "../images/Logo.png";
 import '../header/index.css';
 
 const drawerWidth = 240;
@@ -39,7 +39,11 @@ function DrawerAppBar(props) {
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2, ml: 3 }}>
-               <DashboardIcon />
+                <Image
+                    src={Logo}
+                    alt="logo"
+                    className="cursor-pointer text-3xl logo" onClick={() => linkPage("/")}
+                />
             </Typography>
             <Divider />
             <List>
@@ -73,13 +77,18 @@ function DrawerAppBar(props) {
                     >
                         <Grid container spacing={1} className='w-full'>
                             <Grid item xs={2} sm={2} md={2} lg={2} xl={2} style={{ textAlign: 'right' }} onClick={handleDrawerToggle}> <MenuIcon /></Grid>
-                            <Grid item xs={2} sm={2} md={2} lg={2} xl={2} style={{ textAlign: 'left' }} ><DashboardIcon/></Grid>
+                            <Grid item xs={2} sm={2} md={2} lg={2} xl={2} style={{ textAlign: 'left' }} >
+                                <Image
+                                    src={Logo}
+                                    alt="logo"
+                                    className="cursor-pointer text-3xl logo" onClick={() => linkPage("/")}
+                                /></Grid>
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4} style={{ textAlign: 'center' }}><h3 className='text-xl font-bold text-[#000] hover:text-[#009898]'>LOGO</h3></Grid>
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4} style={{ textAlign: 'center' }}>
                                 <Grid container spacing={2}>
                                     <Tooltip anchorSelect=".search" place="bottom">Search</Tooltip>
                                     <Tooltip anchorSelect=".subscribe" place="bottom">Subscribe</Tooltip>
-                                    <Tooltip anchorSelect=".cart" place="left">Profile</Tooltip>
+                                    <Tooltip anchorSelect=".cart" place="bottom">Profile</Tooltip>
                                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4} style={{ alignItems: 'right' }}><Button key={1} sx={{ color: 'black' }} className='text-[#000] hover:text-[#009898] search' onClick={() => linkPage("/search")}><SearchIcon /></Button></Grid>
                                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4} style={{ alignItems: 'right' }}> <Button key={2} sx={{ color: 'black' }} className='text-[#000] hover:text-[#009898] subscribe' onClick={() => linkPage("/subscribe")}><FavoriteBorderIcon /></Button></Grid>
                                     <Grid item xs={4} sm={4} md={4} lg={4} xl={4} style={{ alignItems: 'right' }}><Button key={3} sx={{ color: 'black' }} className='text-[#000] hover:text-[#009898] cart' onClick={() => linkPage("/profile")}><Person2Icon /></Button></Grid>
@@ -96,7 +105,11 @@ function DrawerAppBar(props) {
                     >
                         <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4} style={{ textAlign: 'left' }}>
-                                <DashboardIcon className="cursor-pointer text-3xl" onClick={() => linkPage("/")} />
+                                <Image
+                                    src={Logo}
+                                    alt="logo"
+                                    className="cursor-pointer text-3xl logo" onClick={() => linkPage("/")}
+                                />
                             </Grid>
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4} style={{ textAlign: 'center' }}>
                                 <Button key='logo' onClick={() => linkPage('/')} >
@@ -107,7 +120,7 @@ function DrawerAppBar(props) {
                                 <Tooltip anchorSelect=".search" place="bottom">Search</Tooltip>
                                 <Tooltip anchorSelect=".subscribe" place="bottom">Subscribe</Tooltip>
                                 <Tooltip anchorSelect=".cart" place="bottom">Cart</Tooltip>
-                                <Tooltip anchorSelect=".profile" place="left">Profile</Tooltip>
+                                <Tooltip anchorSelect=".profile" place="bottom">Profile</Tooltip>
                                 <Button key={1} sx={{ color: 'black' }} className='text-[#000] hover:text-[#009898] search' onClick={() => linkPage("/search")}><SearchIcon /></Button>
                                 <Button key={2} sx={{ color: 'black' }} className='text-[#000] hover:text-[#009898] subscribe' onClick={() => linkPage("/subscribe")}><FavoriteBorderIcon /></Button>
                                 <Button key={3} sx={{ color: 'black' }} className='text-[#000] hover:text-[#009898] cart' onClick={() => linkPage("/cart")}><Person2Icon /></Button>
@@ -121,7 +134,7 @@ function DrawerAppBar(props) {
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12} style={{ textAlign: 'center' }} >
                                 {navItems.map((item) => (
-                                    <Button className='hover:text-[#009898] text-[#000]' sx={{ color: 'black' }} onClick={() => linkPage(item.link)} >{item.name}</Button>
+                                    <Button key={item} className='hover:text-[#009898] text-[#000]' sx={{ color: 'black' }} onClick={() => linkPage(item.link)} >{item.name}</Button>
                                 ))}
                             </Grid>
                         </Grid>
@@ -184,7 +197,7 @@ function DrawerAppBar(props) {
                             <CloseIcon />
                         </IconButton>
                     </Box>
-                    {/* {drawer1} */}
+                    {drawer}
                 </Drawer>
             </nav>
         </Box>
